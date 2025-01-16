@@ -9,7 +9,12 @@ const BASE_URL = 'https://fakestoreapi.com';
 export const getProducts = async path => {
   const res = await fetch(BASE_URL + path);
   if (!res.ok) {
-    const message = (await res.json()).message || 'Something went wrong';
+    let message = '';
+    if (res.status === 404) {
+      message = 'The requested resource could not be found';
+    } else {
+      message = res.statusText || 'An error occurred';
+    }
     throw new Error(message);
   }
   return await res.json();
