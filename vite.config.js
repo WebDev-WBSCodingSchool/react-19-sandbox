@@ -8,7 +8,10 @@ const __dirname = dirname(__filename);
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/react-19-sandbox/',
+  base: '/react-19-sandbox',
+  build: {
+    target: 'esnext'
+  },
   resolve: {
     alias: {
       '@': resolve(__dirname, './src')

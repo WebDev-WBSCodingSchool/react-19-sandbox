@@ -16,10 +16,10 @@ const MainLayout = () => {
         <label htmlFor='my-drawer' aria-label='close sidebar' className='drawer-overlay'></label>
         <ul className='menu bg-base-200 text-base-content min-h-full w-80 p-4'>
           <li>
-            <Link to={import.meta.env.BASE_URL}>Home</Link>
+            <Link to='/'>Home</Link>
           </li>
           <li>
-            <Link to={`${import.meta.env.BASE_URL}search`}>Search</Link>
+            <Link to={`/search`}>Search</Link>
           </li>
         </ul>
       </div>

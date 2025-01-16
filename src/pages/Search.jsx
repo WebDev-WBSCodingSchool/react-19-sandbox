@@ -2,7 +2,7 @@ import { useActionState } from 'react';
 import { SearchError, SearchForm, SearchResults } from '@/components';
 import { getJoke } from '@/actions';
 
-const initialState = await getJoke();
+const initialState = await getJoke(); // target: esnext to use top-level await
 
 const Search = () => {
   const [jokeResponse, formAction] = useActionState(getJoke, initialState);
