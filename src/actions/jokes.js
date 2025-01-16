@@ -2,7 +2,7 @@ const BASE_URL =
   'https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist,explicit&type=single';
 
 export const getJoke = async (prevState, formData) => {
-  const queryFromForm = formData.get('query');
+  const queryFromForm = formData?.get('query');
   try {
     const querySegment = queryFromForm ? `&contains=${queryFromForm}` : '';
     const res = await fetch(BASE_URL + querySegment);
