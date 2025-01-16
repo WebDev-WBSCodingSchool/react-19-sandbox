@@ -12,6 +12,8 @@ const App = () => {
           <Route index element={<h1>Home</h1>} />
           <Route path='search' element={<Search />} />
         </Route>
+        {/* not found*/}
+        <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
     </ErrorBoundary>
   );
