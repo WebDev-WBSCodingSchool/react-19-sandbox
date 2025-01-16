@@ -8,7 +8,7 @@ const App = () => {
   return (
     <ErrorBoundary FallbackComponent={Fallback}>
       <Routes>
-        <Route element={<MainLayout />}>
+        <Route path={import.meta.env.BASE_URL} element={<MainLayout />}>
           <Route index element={<h1>Home</h1>} />
           <Route path='search' element={<Search />} />
         </Route>
