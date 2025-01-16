@@ -1,3 +1,10 @@
+/**
+ * AlertError component displays an error message in an alert box.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.error - The error message to display.
+ * @returns {JSX.Element} The rendered AlertError component.
+ */
 const AlertError = ({ error }) => {
   return (
     <div role='alert' className='alert alert-error my-4'>

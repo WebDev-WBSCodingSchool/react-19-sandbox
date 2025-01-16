@@ -1,5 +1,10 @@
 import { Link, Outlet } from 'react-router';
 
+/**
+ * MainLayout component that provides a drawer layout with a sidebar and main content area.
+ *
+ * @returns {JSX.Element} The rendered drawer layout component.
+ */
 const MainLayout = () => {
   return (
     <div className='drawer'>

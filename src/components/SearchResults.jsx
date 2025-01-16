@@ -1,3 +1,14 @@
+/**
+ * SearchResults component that displays the search results.
+ *
+ * It takes the joke and query as props and displays the joke with the query if it exists.
+ *
+ * @param {Object} props - The component props.
+ * @param {string} props.joke - The joke to display.
+ * @param {string} props.query - The query to display.
+ *
+ * @returns {JSX.Element} The rendered results.
+ */
 const SearchResults = ({ joke, query }) => {
   return (
     <>
