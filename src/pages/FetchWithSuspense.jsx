@@ -1,7 +1,7 @@
+import { ErrorBoundary } from 'react-error-boundary';
 import { Suspense } from 'react';
 import { Loading, Products, ProductsFallback } from '@/components';
 import { getProducts } from '@/data';
-import { ErrorBoundary } from 'react-error-boundary';
 
 /**
  * FetchWithSuspense represents a page that fetches products from an API and displays them in a grid. It uses `Suspense` to handle loading states and `ErrorBoundary` to handle errors.
