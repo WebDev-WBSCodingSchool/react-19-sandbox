@@ -2,8 +2,12 @@ import { useActionState } from 'react';
 import { AlertError, SearchForm, SearchResults } from '@/components';
 import { getJoke } from '@/actions';
 
-// We get the initial state for our form
-const initialState = await getJoke(); // target: esnext to use top-level await. This is done in vite.config.js
+/* 
+  We get the initial state for our form by calling getJoke. We use top-level await by setting the
+  target: esnext. This is done in vite.config.js. Caveat is promise is created outside render and therefore 
+  won't be updated on each render. We would need support for async client components to do this.
+*/
+const initialState = await getJoke();
 
 /**
  * Search represents a page that allows users to search for jokes.

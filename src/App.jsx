@@ -1,7 +1,7 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router';
 import { MainLayout } from '@/layouts';
-import { Search } from '@/pages';
+import { Home, NotFound, Search } from '@/pages';
 import { Fallback } from '@/components';
 
 /**
@@ -23,10 +23,10 @@ const App = () => {
     <ErrorBoundary FallbackComponent={Fallback}>
       <Routes>
         <Route element={<MainLayout />}>
-          <Route index element={<h1>Home</h1>} />
+          <Route index element={<Home />} />
           <Route path='search' element={<Search />} />
         </Route>
-        <Route path='*' element={<h1>Not Found</h1>} />
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </ErrorBoundary>
   );

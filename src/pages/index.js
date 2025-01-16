@@ -1,3 +1,5 @@
+import Home from './Home';
+import NotFound from './NotFound';
 import Search from './Search';
 
-export { Search };
+export { Home, NotFound, Search };
