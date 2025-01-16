@@ -1,4 +1,4 @@
-const SearchError = ({ error }) => {
+const AlertError = ({ error }) => {
   return (
     <div role='alert' className='alert alert-error my-4'>
       <svg
@@ -19,4 +19,4 @@ const SearchError = ({ error }) => {
   );
 };
 
-export default SearchError;
+export default AlertError;

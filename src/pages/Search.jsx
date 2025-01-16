@@ -1,5 +1,5 @@
 import { useActionState } from 'react';
-import { SearchError, SearchForm, SearchResults } from '@/components';
+import { AlertError, SearchForm, SearchResults } from '@/components';
 import { getJoke } from '@/actions';
 
 const initialState = await getJoke(); // target: esnext to use top-level await
@@ -11,7 +11,7 @@ const Search = () => {
     <>
       <SearchForm action={formAction} />
       {jokeResponse?.joke && <SearchResults joke={jokeResponse.joke} query={jokeResponse.query} />}
-      {jokeResponse?.error && <SearchError error={jokeResponse.error} />}
+      {jokeResponse?.error && <AlertError error={jokeResponse.error} />}
     </>
   );
 };

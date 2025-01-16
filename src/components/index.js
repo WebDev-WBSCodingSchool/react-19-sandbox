@@ -1,7 +1,7 @@
 import Fallback from './Fallback';
-import SearchError from './SearchError';
+import AlertError from './AlertError';
 import SearchForm from './SearchForm';
 import SearchResults from './SearchResults';
 import SubmitButton from './SubmitButton';
 
-export { Fallback, SearchError, SearchForm, SearchResults, SubmitButton };
+export { AlertError, Fallback, SearchForm, SearchResults, SubmitButton };

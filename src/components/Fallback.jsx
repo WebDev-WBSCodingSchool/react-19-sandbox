@@ -1,11 +1,24 @@
+import { AlertError } from '.';
+
 const Fallback = ({ error, resetErrorBoundary }) => {
-  console.log({ error });
+  const errorLines = error.stack.split('\n');
 
   return (
-    <div role='alert'>
-      <p>Something went wrong:</p>
-      <pre style={{ color: 'red' }}>{error.message ? error.message : error}</pre>
-      <button onClick={() => resetErrorBoundary()}>Retry</button>
+    <div className='container mx-auto'>
+      <div className='flex flex-col items-center justify-center space-y-4'>
+        <AlertError error={error.message} />
+        <p>Here&apos;s the error trace:</p>
+        <div className='w-full mockup-code'>
+          {errorLines.map((line, index) => (
+            <pre key={index}>
+              <code>{line}</code>
+            </pre>
+          ))}
+        </div>
+        <button className='btn btn-warning mx-auto' onClick={() => resetErrorBoundary()}>
+          Retry
+        </button>
+      </div>
     </div>
   );
 };
