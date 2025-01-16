@@ -30,6 +30,11 @@ const MainLayout = () => {
             </Link>
           </li>
           <li>
+            <Link to={`/use-and-suspense`} onClick={closeDrawer}>
+              Fetch data while suspending
+            </Link>
+          </li>
+          <li>
             <Link to={`/search`} onClick={closeDrawer}>
               Search
             </Link>

@@ -1,7 +1,7 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { Routes, Route } from 'react-router';
 import { MainLayout } from '@/layouts';
-import { Home, NotFound, Search } from '@/pages';
+import { FetchWithSuspense, Home, NotFound, Search } from '@/pages';
 import { Fallback } from '@/components';
 
 /**
@@ -25,6 +25,7 @@ const App = () => {
         <Route element={<MainLayout />}>
           <Route index element={<Home />} />
           <Route path='search' element={<Search />} />
+          <Route path='use-and-suspense' element={<FetchWithSuspense />} />
         </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
