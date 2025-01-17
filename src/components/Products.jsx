@@ -1,40 +1,41 @@
 import { use } from 'react';
+import { Alert, ProductCard } from '.';
 
 /**
  * Products component renders a list of products.
  *
- * It receives a promise that resolves to an array of products. It uses the `use` hook to resolve the promise and render the products.
+ * It receives a promise that resolves to an array of products or the array itself.
+ * It uses the `use` hook to resolve the promise and render the products.
  *
  * https://react.dev/reference/react/use
  *
  * @param {Object} props - The component props.
  * @param {Promse<any>} props.productsPromise - The promise that resolves to an array of products.
+ * @param {Array<Object>} props.productsArray - The array of products.
  *
  * @returns {JSX.Element} The rendered products component.
  */
-const Products = ({ productsPromise }) => {
-  const products = use(productsPromise);
+const Products = ({ productsPromise, productsArray }) => {
+  let products;
 
+  if (productsPromise) {
+    products = use(productsPromise);
+  } else {
+    products = productsArray;
+  }
+
+  if (!products.length) return <Alert type='warning' message='No products found.' />;
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5'>
       {products.map(({ category, description, id, image, price, title }) => (
-        <div key={id} className='card bg-base-300 shadow-xl'>
-          <figure className='bg-white h-48'>
-            <img src={image} alt={title} className='object-cover h-full w-full' />
-          </figure>
-          <div className='card-body'>
-            <h2 className='card-title'>{title}</h2>
-            <p className='truncate'>{description}</p>
-            <div className='card-actions justify-end'>
-              <p className='text-2xl font-bold'>
-                {new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(
-                  price
-                )}
-              </p>
-              <div className='badge badge-outline'>{category}</div>
-            </div>
-          </div>
-        </div>
+        <ProductCard
+          key={id}
+          category={category}
+          description={description}
+          image={image}
+          price={price}
+          title={title}
+        />
       ))}
     </div>
   );

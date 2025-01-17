@@ -1,37 +1,23 @@
-import { useActionState } from 'react';
-import { AlertError, SearchForm, SearchResults } from '@/components';
-import { getJoke } from '@/actions';
-
-/* 
-  We get the initial state for our form by calling getJoke. We use top-level await by setting the
-  target: esnext. This is done in vite.config.js. Caveat is promise is created outside render and therefore 
-  won't be updated on each render. We would need support for async client components to do this.
-*/
-const initialState = await getJoke();
+import { Suspense } from 'react';
+import { Loading, SearchForm } from '@/components';
+import { getProductsForForm } from '@/data';
 
 /**
- * Search represents a page that allows users to search for jokes.
+ * Search represents a page that allows users to search for products.
  *
- * It takes care of rendering the search form, displaying search results, and handling errors. It handles the form state and action with the `useActionState` hook.
- *
- * Call useActionState at the top level of your component to create component state that is updated when a form action is invoked.
- * You pass useActionState an existing form action function as well as an initial state, and it returns a new action that you use in your form,
- * along with the latest form state and whether the Action is still pending. The latest form state is also passed to the function that you provided.
- *
- * https://react.dev/reference/react/useActionState
+ * It takes care of getting the initial data for the search form, which is a list of products.
+ * It uses `Suspense` to handle loading states and since it doesn't declare an `ErrorBoundary` errors
+ * will be thrown to the nearest error boundary, which is the ErrorBoundary component in the App component.
  *
  * @returns {JSX.Element} The rendered search page
  */
 const Search = () => {
-  const [jokeResponse, formAction] = useActionState(getJoke, initialState);
+  const productsPromise = getProductsForForm();
 
   return (
-    <>
-      <SearchForm action={formAction} />
-      {/* The jokeResponse object is used to check if there is a joke or an error. */}
-      {jokeResponse?.joke && <SearchResults joke={jokeResponse.joke} query={jokeResponse.query} />}
-      {jokeResponse?.error && <AlertError error={jokeResponse.error} />}
-    </>
+    <Suspense fallback={<Loading />}>
+      <SearchForm productsPromise={productsPromise} />
+    </Suspense>
   );
 };
 

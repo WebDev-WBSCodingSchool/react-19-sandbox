@@ -1,4 +1,4 @@
-import { AlertError } from '.';
+import { Alert } from '.';
 
 /**
  * Fallback component to display error information and provide a retry option.
@@ -14,7 +14,7 @@ const Fallback = ({ error, resetErrorBoundary }) => {
   return (
     <div className='container mx-auto'>
       <div className='flex flex-col items-center justify-center space-y-4'>
-        <AlertError error={error.message} />
+        <Alert type='error' message={error.message} />
         <p>Here&apos;s the error trace:</p>
         <div className='w-full mockup-code'>
           {errorLines.map((line, index) => (

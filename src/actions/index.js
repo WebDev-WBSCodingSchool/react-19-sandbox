@@ -1,3 +1,3 @@
-import { getJoke } from './jokes';
+import { searchProducts } from './products';
 
-export { getJoke };
+export { searchProducts };

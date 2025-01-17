@@ -1,19 +1,19 @@
-import AlertError from './AlertError';
+import Alert from './Alert';
 import Fallback from './Fallback';
 import Loading from './Loading';
+import ProductCard from './ProductCard';
 import Products from './Products';
 import ProductsFallback from './ProductsFallback';
 import SearchForm from './SearchForm';
-import SearchResults from './SearchResults';
 import SubmitButton from './SubmitButton';
 
 export {
-  AlertError,
+  Alert,
   Fallback,
   Loading,
+  ProductCard,
   Products,
   ProductsFallback,
   SearchForm,
-  SearchResults,
   SubmitButton
 };

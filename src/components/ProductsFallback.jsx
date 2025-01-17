@@ -1,4 +1,4 @@
-import { AlertError } from '.';
+import { Alert } from '.';
 
 /**
  * ProductsFallback component to display error information and provide a retry option.
@@ -12,7 +12,7 @@ const ProductsFallback = ({ error, resetErrorBoundary }) => {
   return (
     <div className='container mx-auto'>
       <div className='flex flex-col items-center justify-center space-y-4'>
-        <AlertError error={error.message} />
+        <Alert type='error' message={error.message} />
         <button className='btn btn-warning mx-auto' onClick={() => resetErrorBoundary()}>
           Please try again
         </button>
