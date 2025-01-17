@@ -26,7 +26,12 @@ export const getProducts = async () => {
  * @param {string} query - The query to search for products.
  * @returns {Promise<any>} The products from the API.
  */
-export const getProductsForForm = async query => {
+export const getProductsForForm = async () => {
+  const intialFormData = new FormData();
+  intialFormData.append('query', '');
+  intialFormData.append('category', 'all');
+  intialFormData.append('price', '0');
+
   try {
     const res = await fetch(BASE_URL);
     if (!res.ok) {
@@ -39,8 +44,8 @@ export const getProductsForForm = async query => {
       throw new Error(message);
     }
     const products = await res.json();
-    return { products, error: null, query };
+    return { products, error: null, formData: intialFormData };
   } catch (error) {
-    return { products: null, error: error.message, query };
+    return { products: null, error: error.message, formData: intialFormData };
   }
 };

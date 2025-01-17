@@ -22,33 +22,58 @@ import { searchProducts } from '@/actions';
  */
 const SearchForm = ({ productsPromise }) => {
   // We use `use` to unwrap the promise and pass it as initial state for the form action.
-  const [productsResponse, formAction] = useActionState(searchProducts, use(productsPromise));
+  const [productsState, formAction] = useActionState(searchProducts, use(productsPromise));
+
+  console.log('render', productsState.formData.get('category'));
 
   return (
     <>
       <form action={formAction} className='mb-5'>
-        <div className='join'>
+        <div className='flex items-center gap-2'>
           <input
             name='query'
             placeholder='Search'
-            className='input input-bordered join-item'
+            defaultValue={productsState.formData.get('query')}
+            className='input input-bordered'
             aria-label='Search for jokes containing a query.'
           />
+          <select
+            name='category'
+            defaultValue={productsState.formData.get('category')}
+            className='select select-bordered'
+          >
+            <option value='all'>All</option>
+            <option value='electronics'>Electronics</option>
+            <option value='jewelery'>Jewelery</option>
+            <option value='men'>Men&apos;s Clothing</option>
+            <option value='women'>Women&apos;s Clothing</option>
+          </select>
+          <label className='form-control'>
+            <input
+              type='range'
+              name='price'
+              min='1'
+              max='1000'
+              defaultValue={productsState.formData.get('price')}
+              className='range range-primary range-ghost'
+              aria-label='Select the number of products to display.'
+            />
+          </label>
           <SubmitButton />
         </div>
       </form>
       {/* The productsResponse object is used to check if there are products or an error. */}
-      {productsResponse?.products ? (
+      {productsState?.products ? (
         <>
           <h3 className='text-xl font-bold my-5'>
-            {productsResponse?.query
-              ? `Products for: ${productsResponse?.query}`
+            {productsState?.query
+              ? `Products for: ${productsState?.query}`
               : `These are the products`}
           </h3>
-          <Products productsArray={productsResponse.products} />
+          <Products productsArray={productsState.products} />
         </>
       ) : (
-        <Alert type='error' message={productsResponse.error} />
+        <Alert type='error' message={productsState.error} />
       )}
     </>
   );

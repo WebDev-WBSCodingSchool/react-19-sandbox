@@ -36,7 +36,7 @@ const MainLayout = () => {
           </li>
           <li>
             <Link to={`/search`} onClick={closeDrawer}>
-              Search
+              Search form with initial data
             </Link>
           </li>
         </ul>

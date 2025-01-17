@@ -24,10 +24,10 @@ export const searchProducts = async (prevState, formData) => {
       const filteredProducts = products.filter(product =>
         product.title.toLowerCase().includes(queryString.toLowerCase())
       );
-      return { products: filteredProducts, error: null, query: queryString };
+      return { products: filteredProducts, error: null, formData };
     }
-    return { products, error: null, query: '' };
+    return { products, error: null, formData };
   } catch (error) {
-    return { products: null, error: error.message, query: '' };
+    return { products: null, error: error.message, formData };
   }
 };

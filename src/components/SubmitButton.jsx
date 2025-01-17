@@ -16,7 +16,7 @@ const SubmitButton = () => {
   const { pending } = useFormStatus();
 
   return (
-    <button type='submit' className='btn btn-primary join-item' disabled={pending}>
+    <button type='submit' className='btn btn-primary' disabled={pending}>
       {pending ? 'Searching...' : 'Search'}
     </button>
   );
