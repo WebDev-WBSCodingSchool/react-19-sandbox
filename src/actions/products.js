@@ -12,7 +12,9 @@ const BASE_URL = 'https://fakestoreapi.com/products';
  * }>} An object containing the products, error message, and query.
  */
 export const searchProducts = async (prevState, formData) => {
-  const queryString = formData?.get('query');
+  const query = formData?.get('query');
+  const category = formData?.get('category');
+  const price = parseFloat(formData?.get('price'));
   try {
     const res = await fetch(BASE_URL);
     if (!res.ok) {
@@ -20,13 +22,19 @@ export const searchProducts = async (prevState, formData) => {
       throw new Error(message);
     }
     const products = await res.json();
-    if (queryString) {
-      const filteredProducts = products.filter(product =>
-        product.title.toLowerCase().includes(queryString.toLowerCase())
-      );
-      return { products: filteredProducts, error: null, formData };
+    let filteredProducts = products;
+    if (price) {
+      filteredProducts = filteredProducts.filter(product => product.price <= price);
     }
-    return { products, error: null, formData };
+    if (category !== 'all') {
+      filteredProducts = filteredProducts.filter(product => product.category === category);
+    }
+    if (query) {
+      filteredProducts = filteredProducts.filter(product =>
+        product.title.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+    return { products: filteredProducts, error: null, formData };
   } catch (error) {
     return { products: null, error: error.message, formData };
   }

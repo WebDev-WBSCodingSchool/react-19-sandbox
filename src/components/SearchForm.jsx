@@ -49,10 +49,13 @@ const SearchForm = ({ productsPromise }) => {
             <option value='women'>Women&apos;s Clothing</option>
           </select>
           <label className='form-control'>
+            <div className='label'>
+              <span className='label-text'>Up to?</span>
+            </div>
             <input
               type='range'
               name='price'
-              min='1'
+              min='0'
               max='1000'
               defaultValue={productsState.formData.get('price')}
               className='range range-primary range-ghost'
