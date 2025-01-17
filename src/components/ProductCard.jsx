@@ -14,7 +14,7 @@ const ProductCard = ({ category, description, image, price, title }) => {
   return (
     <div className='card bg-base-300 shadow-xl'>
       <figure className='bg-white h-48'>
-        <img src={image} alt={title} className='object-cover h-full w-full' />
+        <img src={image} alt={title} className='object-contain h-full w-full' />
       </figure>
       <div className='card-body'>
         <h2 className='card-title'>{title}</h2>
