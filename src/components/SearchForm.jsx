@@ -26,7 +26,6 @@ const SearchForm = () => {
       const formData = new FormData(e.target);
       setProductsState(await searchProducts(formData));
     } catch (error) {
-      console.error(error);
       setProductsState({
         error: error.message,
         products: null
