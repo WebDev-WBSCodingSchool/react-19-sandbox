@@ -4,6 +4,7 @@ import ListArtists from './ListArtists';
 import ListPlaylists from './ListPlaylists';
 import ListSelectionButton from './ListSelectionButton';
 import ListSongs from './ListSongs';
+import Loading from './Loading';
 import ProductCard from './ProductCard';
 import SearchForm from './SearchForm';
 
@@ -14,6 +15,7 @@ export {
   ListPlaylists,
   ListSelectionButton,
   ListSongs,
+  Loading,
   ProductCard,
   SearchForm
 };
