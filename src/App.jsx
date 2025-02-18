@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router';
 import { MainLayout } from '@/layouts';
 
 const Home = lazy(() => import('@/pages/Home'));
-const Forms = lazy(() => import('@/pages/Forms'));
+const Search = lazy(() => import('@/pages/Search'));
 const Transitions = lazy(() => import('@/pages/Transitions'));
 
 const App = () => {
@@ -11,8 +11,8 @@ const App = () => {
     <Routes>
       <Route path='/' element={<MainLayout />}>
         <Route index element={<Home />} />
-        <Route path='forms' element={<Forms />} />
         <Route path='transitions' element={<Transitions />} />
+        <Route path='search-form' element={<Search />} />
       </Route>
     </Routes>
   );
