@@ -1,6 +1,6 @@
 const Alert = ({ message, type }) => {
   const getAlertClasses = () => {
-    let classes = 'my-4 alert ';
+    let classes = 'w-full my-4 alert ';
     if (type === 'error') {
       classes += 'alert-error';
     } else if (type === 'warning') {
