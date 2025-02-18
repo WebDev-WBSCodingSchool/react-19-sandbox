@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 const MainLayout = () => {
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto mt-5'>
       <Suspense
         fallback={
           <div className='flex justify-center items-center h-screen'>
