@@ -23,8 +23,8 @@ export const searchProducts = async formData => {
         product.title.toLowerCase().includes(query.toLowerCase())
       );
     }
-    return { products: filteredProducts, error: null, formData };
+    return { products: filteredProducts, error: null, filters: formData };
   } catch (error) {
-    return { products: null, error: error.message, formData };
+    return { products: null, error: error.message, filters: formData };
   }
 };

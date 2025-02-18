@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, ProductCard } from '@/components';
 import { searchProducts } from '@/data';
 
@@ -8,6 +8,16 @@ const SearchForm = () => {
     products: null,
     error: null
   });
+
+  useEffect(() => {
+    const getInitialProducts = async () => {
+      const formData = new FormData();
+      formData.append('category', 'all');
+      setProductsState(await searchProducts(formData));
+    };
+
+    getInitialProducts();
+  }, []);
 
   const searchProductsHandler = async e => {
     try {
@@ -64,8 +74,8 @@ const SearchForm = () => {
       {productsState?.products && (
         <>
           <h3 className='text-xl font-bold my-5'>
-            {productsState?.query
-              ? `Products for: ${productsState?.query}`
+            {productsState?.filters?.get('query')
+              ? `Products for: ${productsState?.filters?.get('query')}`
               : `These are the products`}
           </h3>
           <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5'>
