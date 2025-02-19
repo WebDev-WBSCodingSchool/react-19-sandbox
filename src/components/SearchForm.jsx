@@ -1,43 +1,24 @@
-import { useEffect, useState } from 'react';
-import { Alert, ProductCard } from '@/components';
-import { searchProducts } from '@/data';
+import { startTransition, use, useActionState } from 'react';
+import { Alert, Products } from '@/components';
+import { searchProducts } from '@/actions';
 
-const SearchForm = () => {
-  const [isPending, setIsPending] = useState();
-  const [productsState, setProductsState] = useState({
-    products: null,
-    error: null
-  });
+const SearchForm = ({ productsPromise }) => {
+  const [productsState, searchAction, isPending] = useActionState(
+    searchProducts,
+    use(productsPromise)
+  );
 
-  useEffect(() => {
-    const getInitialProducts = async () => {
-      const formData = new FormData();
-      formData.append('category', 'all');
-      setProductsState(await searchProducts(formData));
-    };
-
-    getInitialProducts();
-  }, []);
-
-  const searchProductsHandler = async e => {
-    try {
-      e.preventDefault();
-      setIsPending(true);
-      const formData = new FormData(e.target);
-      setProductsState(await searchProducts(formData));
-    } catch (error) {
-      setProductsState({
-        error: error.message,
-        products: null
-      });
-    } finally {
-      setIsPending(false);
-    }
+  const searchSubmitHandler = event => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    startTransition(() => {
+      searchAction(formData);
+    });
   };
 
   return (
     <>
-      <form onSubmit={searchProductsHandler} className='mb-5'>
+      <form onSubmit={searchSubmitHandler} className='mb-5'>
         <div className='flex items-center gap-2'>
           <input
             name='query'
@@ -77,11 +58,7 @@ const SearchForm = () => {
               ? `Products for: ${productsState?.filters?.get('query')}`
               : `These are the products`}
           </h3>
-          <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5'>
-            {productsState.products.map(product => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <Products productData={productsState.products} />
         </>
       )}
       {productsState?.error && <Alert type='error' message={productsState.error} />}

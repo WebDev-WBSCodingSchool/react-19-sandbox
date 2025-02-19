@@ -1,3 +1,3 @@
-import { searchProducts } from './products';
+import { getProducts, getProductsForForm } from './products';
 
-export { searchProducts };
+export { getProducts, getProductsForForm };

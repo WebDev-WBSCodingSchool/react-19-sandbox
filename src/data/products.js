@@ -1,30 +1,39 @@
 const BASE_URL = 'https://fakestoreapi.com/products';
 
-export const searchProducts = async formData => {
-  const query = formData?.get('query');
-  const category = formData?.get('category');
-  const price = parseFloat(formData?.get('price'));
+export const getProducts = async () => {
+  const res = await fetch(BASE_URL);
+  if (!res.ok) {
+    let message = '';
+    if (res.status === 404) {
+      message = 'The requested resource could not be found';
+    } else {
+      message = res.statusText || 'An error occurred';
+    }
+    throw new Error(message);
+  }
+  return await res.json();
+};
+
+export const getProductsForForm = async () => {
+  const intialFormData = new FormData();
+  intialFormData.append('query', '');
+  intialFormData.append('category', 'all');
+  intialFormData.append('price', '0');
+
   try {
     const res = await fetch(BASE_URL);
     if (!res.ok) {
-      const message = (await res.json()).message || 'Something went wrong';
+      let message = '';
+      if (res.status === 404) {
+        message = 'The requested resource could not be found';
+      } else {
+        message = res.statusText || 'An error occurred';
+      }
       throw new Error(message);
     }
     const products = await res.json();
-    let filteredProducts = products;
-    if (price) {
-      filteredProducts = filteredProducts.filter(product => product.price <= price);
-    }
-    if (category !== 'all') {
-      filteredProducts = filteredProducts.filter(product => product.category === category);
-    }
-    if (query) {
-      filteredProducts = filteredProducts.filter(product =>
-        product.title.toLowerCase().includes(query.toLowerCase())
-      );
-    }
-    return { products: filteredProducts, error: null, filters: formData };
+    return { products, error: null, filters: intialFormData };
   } catch (error) {
-    return { products: null, error: error.message, filters: formData };
+    return { products: null, error: error.message, filters: intialFormData };
   }
 };

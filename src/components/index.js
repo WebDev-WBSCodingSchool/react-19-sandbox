@@ -7,6 +7,8 @@ import ListSelectionButton from './ListSelectionButton';
 import ListSongs from './ListSongs';
 import Loading from './Loading';
 import ProductCard from './ProductCard';
+import Products from './Products';
+import ProductsFallback from './ProductsFallback';
 import SearchForm from './SearchForm';
 
 export {
@@ -19,5 +21,7 @@ export {
   ListSongs,
   Loading,
   ProductCard,
+  Products,
+  ProductsFallback,
   SearchForm
 };
