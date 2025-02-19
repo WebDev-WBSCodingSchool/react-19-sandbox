@@ -1,40 +1,16 @@
-import { useEffect, useState } from 'react';
-import { Alert, Loading, ProductCard } from '@/components';
+import { Suspense } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import { Loading, Products, ProductsFallback } from '@/components';
+import { getProducts } from '@/data';
 
 const Fetching = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getInitialProducts = async () => {
-      try {
-        const res = await fetch('https://fakestoreapi.com/products');
-        if (!res.ok) {
-          const message = (await res.json()).message || 'Something went wrong';
-          throw new Error(message);
-        }
-        setProducts(await res.json());
-      } catch (error) {
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    getInitialProducts();
-  }, []);
-
-  if (isLoading) return <Loading />;
-
-  if (error) return <Alert message={error.message} type='error' />;
-
+  const productsPromise = getProducts();
   return (
-    <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5'>
-      {products.map(product => (
-        <ProductCard key={product.id} product={product} />
-      ))}
-    </div>
+    <ErrorBoundary FallbackComponent={ProductsFallback}>
+      <Suspense fallback={<Loading />}>
+        <Products productData={productsPromise} />
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 
