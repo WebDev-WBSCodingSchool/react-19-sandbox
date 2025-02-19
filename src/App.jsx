@@ -16,8 +16,8 @@ const App = () => {
         <Route path='fetching' element={<Fetching />} />
         <Route path='transitions' element={<Transitions />} />
         <Route path='search-form' element={<Search />} />
+        <Route path='*' element={<NotFound />} />
       </Route>
-      <Route path='*' element={<NotFound />} />
     </Routes>
   );
 };

@@ -6,9 +6,12 @@ const Search = () => {
   const productsPromise = getProductsForForm();
 
   return (
-    <Suspense fallback={<Loading />}>
-      <SearchForm productsPromise={productsPromise} />
-    </Suspense>
+    <>
+      <h1 className='text-xl mb-2'>Search form with initial data</h1>
+      <Suspense fallback={<Loading />}>
+        <SearchForm productsPromise={productsPromise} />
+      </Suspense>
+    </>
   );
 };
 

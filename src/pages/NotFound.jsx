@@ -1,9 +1,5 @@
 const NotFound = () => {
-  return (
-    <div className='container mx-auto py-5'>
-      <h1 className='text-3xl font-bold'>404 - Page Not Found</h1>
-    </div>
-  );
+  return <h1 className='text-xl mb-2'>Not Found!</h1>;
 };
 
 export default NotFound;

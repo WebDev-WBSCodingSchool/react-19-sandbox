@@ -1,17 +1,7 @@
 import { Link } from 'react-router';
+import { examples } from '@/utils';
 
 const Home = () => {
-  const examples = [
-    {
-      id: 1,
-      name: 'Transitions',
-      description: 'Overview of React transitions',
-      path: '/transitions'
-    },
-    { id: 2, name: 'Search Form', path: '/search-form' },
-    { id: 3, name: 'Fetching', path: '/fetching' }
-  ];
-
   return (
     <div className='grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-5'>
       {examples.map(ex => (

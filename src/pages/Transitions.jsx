@@ -6,6 +6,7 @@ const Transitions = () => {
 
   return (
     <>
+      <h1 className='text-xl mb-2'>Transitions</h1>
       <div className='flex gap-2'>
         <ListSelectionButton
           action={() => setList('playlists')}
