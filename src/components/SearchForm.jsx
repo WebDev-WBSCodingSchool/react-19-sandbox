@@ -30,8 +30,8 @@ const SearchForm = ({ productsPromise }) => {
             <option value='all'>All</option>
             <option value='electronics'>Electronics</option>
             <option value='jewelery'>Jewelery</option>
-            <option value='men'>Men&apos;s Clothing</option>
-            <option value='women'>Women&apos;s Clothing</option>
+            <option value="men's clothing">Men&apos;s Clothing</option>
+            <option value="women's clothing">Women&apos;s Clothing</option>
           </select>
           <label className='form-control'>
             <div className='label'>
